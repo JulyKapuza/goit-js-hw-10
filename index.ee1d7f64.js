@@ -1,0 +1,2 @@
+const n={searchBox:document.querySelector("#search-box"),countryList:document.querySelector(".country-list"),countryInfo:document.querySelector(".country-info")};fetch("https://restcountries.com/v3.1/name/peru").then((n=>n.json())).then((function(e){const o=e.map((n=>`<li>\n      <svg><use href="${n.flags.svg}"></use>\n            </svg>\n          <p> ${n.name.common}</p>\n         </li>`)).join("");n.countryList.innerHTML=o})).catch((n=>{console.log(n)}));
+//# sourceMappingURL=index.ee1d7f64.js.map
