@@ -23,7 +23,11 @@ function onSearch(e) {
     e.preventDefault();
 
     const serchQuery = refs.searchBox.value;
-    
+
+    if (serchQuery === '' || serchQuery === ' ' ) {
+         return Notiflix.Notify.warning('Please enter a word');
+                 
+     }
 
     fetchCountries(serchQuery.trim())
         .then(countries => {
@@ -33,8 +37,10 @@ function onSearch(e) {
             
             let numberOfCountries = countries.length;
             console.log(numberOfCountries)
+            
 
-            if (numberOfCountries > 10) {
+
+             if (numberOfCountries > 10) {
 
                 Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
 
@@ -46,7 +52,7 @@ function onSearch(e) {
             } else if (numberOfCountries === 1) {
 
                 renderCountryInfo(countries);
-            }
+             } 
         })
             
     .catch(onFetchError)
@@ -94,10 +100,11 @@ function renderCountryInfo(countries) {
 
 
 function onFetchError(error) {
-    
-        Notiflix.Notify.failure('Oops, there is no country with that name');
+     
+     Notiflix.Notify.failure('Oops, there is no country with that name');
     refs.countryList.innerHTML = '';
-     refs.countryInfo.innerHTML = '';
+     refs.countryInfo.innerHTML = ''; 
+  
 
 };
     
